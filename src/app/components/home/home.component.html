@@ -1,0 +1,109 @@
+<div class="home" [@fadeIn]>
+  <!-- Hero Banner Section -->
+  <div class="hero-banner">
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="hero-badge">Up to 70% off on Black Friday</span>
+        <h1 class="hero-title">TRENDY FASHION COLLECTION</h1>
+        <p class="hero-subtitle">Discover the latest trends and exclusive deals</p>
+        <a routerLink="/items" mat-raised-button color="primary" class="hero-button">
+          <mat-icon>shopping_bag</mat-icon>
+          Shop Now
+        </a>
+      </div>
+      <div class="hero-image">
+        <img src="assets/images/hero-banner.jpg" alt="Fashion Collection" class="hero-img" 
+             onerror="this.onerror=null; this.src='assets/images/hero-placeholder.jpg'">
+      </div>
+    </div>
+  </div>
+
+  <!-- Service Features -->
+  <div class="service-features">
+    <div class="feature-card">
+      <mat-icon class="feature-icon">local_shipping</mat-icon>
+      <div class="feature-content">
+        <h3>Free Shipping</h3>
+        <p>On orders over $50</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <mat-icon class="feature-icon">support_agent</mat-icon>
+      <div class="feature-content">
+        <h3>24/7 Support</h3>
+        <p>We're here to help</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <mat-icon class="feature-icon">sell</mat-icon>
+      <div class="feature-content">
+        <h3>Best Prices</h3>
+        <p>Great offers daily</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <mat-icon class="feature-icon">assignment_return</mat-icon>
+      <div class="feature-content">
+        <h3>Easy Returns</h3>
+        <p>30-day return policy</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Promotional Cards -->
+  <div class="promo-section">
+    <h2 class="section-title">Special Offers</h2>
+    <div class="promo-cards">
+      <mat-card class="promo-card">
+        <div class="promo-badge">30% Sale</div>
+        <mat-card-content>
+          <h3>Gadget Store</h3>
+          <img src="assets/images/promo-gadget.jpg" alt="Gadget" class="promo-image"
+               onerror="this.style.display='none'">
+          <a routerLink="/items?category=electronics" mat-button color="primary">Buy Now</a>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="promo-card">
+        <div class="promo-badge">Save 30%</div>
+        <mat-card-content>
+          <h3>Bundle Package</h3>
+          <img src="assets/images/promo-bundle.jpg" alt="Bundle" class="promo-image"
+               onerror="this.style.display='none'">
+          <a routerLink="/items" mat-button color="primary">See All</a>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="promo-card">
+        <div class="promo-badge">30% Sale</div>
+        <mat-card-content>
+          <h3>Valentine Offer</h3>
+          <img src="assets/images/promo-valentine.jpg" alt="Valentine" class="promo-image"
+               onerror="this.style.display='none'">
+          <a routerLink="/items" mat-button color="primary">Buy Now</a>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="promo-card">
+        <div class="promo-badge">New</div>
+        <mat-card-content>
+          <h3>New Arrival</h3>
+          <img src="assets/images/promo-new.jpg" alt="New Arrival" class="promo-image"
+               onerror="this.style.display='none'">
+          <a routerLink="/items" mat-button color="primary">See All</a>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Featured Products Section -->
+  <div class="featured-section">
+    <h2 class="section-title">Featured Items</h2>
+    <div class="featured-grid">
+      <app-item-card *ngFor="let item of featuredItems" [item]="item"></app-item-card>
+    </div>
+    <div class="view-all">
+      <a routerLink="/items" mat-raised-button color="primary">
+        View All Products
+        <mat-icon>arrow_forward</mat-icon>
+      </a>
+    </div>
+  </div>
+</div>

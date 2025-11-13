@@ -1,0 +1,53 @@
+<div class="about" [@fadeIn]>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>person</mat-icon>
+        About Me
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="profile-section">
+        <div class="profile-image-container">
+          <img 
+            src="assets/images/profile.jpg" 
+            alt="Profile Picture" 
+            class="profile-image"
+            (error)="handleImageError($event)" />
+        </div>
+        <div class="bio-section">
+          <p class="bio-text">
+            An enthusiastic Computer Systems and Software undergraduate with a strong foundation in programming, user-centered design, and digital creativity. Seeking opportunities to apply technical skills and design expertise in innovative projects, contributing to impactful solutions.
+          </p>
+        </div>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <div class="app-info">
+        <h3>About This App</h3>
+        <p>This app was built with Angular to showcase routing, API services, and component architecture. It's a demo for educational purposes.</p>
+        <p>Features include server-side search, detailed views, and responsive design.</p>
+      </div>
+      
+      <div class="features">
+        <div class="feature-item">
+          <mat-icon>route</mat-icon>
+          <span>Angular Routing</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>api</mat-icon>
+          <span>API Integration</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>animation</mat-icon>
+          <span>Smooth Animations</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>devices</mat-icon>
+          <span>Responsive Design</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

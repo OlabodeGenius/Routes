@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './shared/navbar/navbar';
-import { trigger, transition, style, animate, query, group } from '@angular/animations';
+import { trigger, transition, style, animate, query } from '@angular/animations';
 
 @Component({
   selector: 'app-root',

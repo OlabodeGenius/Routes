@@ -1,0 +1,91 @@
+<div class="item-details" [@fadeIn]>
+  <button mat-button routerLink="/items" class="back-button">
+    <mat-icon>arrow_back</mat-icon>
+    Back to Items
+  </button>
+
+  <div *ngIf="loading" class="loading">
+    <mat-spinner></mat-spinner>
+    <p>Loading item details...</p>
+  </div>
+
+  <mat-card *ngIf="!loading && item" class="details-card">
+    <div class="image-section">
+      <img [src]="item.images[currentImageIndex]" [alt]="item.title" class="main-image">
+      <div class="image-controls" *ngIf="item.images.length > 1">
+        <button mat-icon-button (click)="prevImage()" [disabled]="currentImageIndex === 0">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <span class="image-counter">{{ currentImageIndex + 1 }} / {{ item.images.length }}</span>
+        <button mat-icon-button (click)="nextImage()" [disabled]="currentImageIndex === item.images.length - 1">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+      <div class="thumbnail-list" *ngIf="item.images.length > 1">
+        <img
+          *ngFor="let img of item.images; let i = index"
+          [src]="img"
+          [alt]="item.title + ' thumbnail ' + i"
+          [class.active]="i === currentImageIndex"
+          (click)="currentImageIndex = i"
+          class="thumbnail">
+      </div>
+    </div>
+
+    <mat-card-header>
+      <mat-card-title>{{ item.title }}</mat-card-title>
+      <mat-card-subtitle>{{ item.brand }} - {{ item.category }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p class="description">{{ item.description }}</p>
+
+      <div class="details-grid">
+        <div class="detail-item">
+          <mat-icon>star</mat-icon>
+          <div>
+            <strong>Rating</strong>
+            <p>{{ item.rating }} / 5.0</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <mat-icon>inventory_2</mat-icon>
+          <div>
+            <strong>Stock</strong>
+            <p>{{ item.stock }} available</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <mat-icon>local_offer</mat-icon>
+          <div>
+            <strong>Discount</strong>
+            <p>{{ item.discountPercentage }}% off</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="price-section">
+        <span class="price">${{ item.price }}</span>
+        <span class="original-price" *ngIf="item.discountPercentage > 0">
+          ${{ (item.price / (1 - item.discountPercentage / 100)).toFixed(2) }}
+        </span>
+      </div>
+
+      <mat-chip-set>
+        <mat-chip>{{ item.category }}</mat-chip>
+        <mat-chip>{{ item.brand }}</mat-chip>
+      </mat-chip-set>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary">
+        <mat-icon>shopping_cart</mat-icon>
+        Add to Cart
+      </button>
+      <button mat-button>
+        <mat-icon>favorite_border</mat-icon>
+        Add to Wishlist
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
