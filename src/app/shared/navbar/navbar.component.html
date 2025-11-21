@@ -23,12 +23,34 @@
           <span>Items</span>
         </a>
       </li>
+
+      @if (currentUser$ | async) {
+      <li>
+        <a routerLink="/profile" routerLinkActive="active" aria-label="Profile">
+          <mat-icon>account_circle</mat-icon>
+          <span>Profile</span>
+        </a>
+      </li>
+      <li>
+        <a (click)="logout()" class="logout-btn" aria-label="Logout">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </a>
+      </li>
+      } @else {
       <li>
         <a routerLink="/login" routerLinkActive="active" aria-label="Login">
           <mat-icon>login</mat-icon>
           <span>Login</span>
         </a>
       </li>
+      <li>
+        <a routerLink="/signup" routerLinkActive="active" aria-label="Signup">
+          <mat-icon>person_add</mat-icon>
+          <span>Signup</span>
+        </a>
+      </li>
+      }
     </ul>
   </div>
 </mat-toolbar>
