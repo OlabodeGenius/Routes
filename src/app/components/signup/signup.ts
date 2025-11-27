@@ -63,6 +63,7 @@ export class SignupComponent {
 
     onSubmit() {
         if (this.signupForm.valid) {
+            if (this.loading()) return;
             this.loading.set(true);
             this.errorMessage.set(null);
             const { email, password } = this.signupForm.value;

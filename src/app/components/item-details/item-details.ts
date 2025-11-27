@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ItemsService, Item } from '../../services/items.service';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { Item } from '../../services/items.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { loadItem } from '../../items/state/items.actions';
+import { selectSelectedItem, selectLoadingDetail } from '../../items/state/items.selectors';
 
 @Component({
   selector: 'app-item-details',
@@ -31,36 +35,36 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ])
   ]
 })
-export class ItemDetailsComponent implements OnInit {
+export class ItemDetailsComponent implements OnInit, OnDestroy {
   item: Item | null = null;
   loading = false;
   currentImageIndex = 0;
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private itemsService: ItemsService
-  ) {}
+    private store: Store
+  ) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.loadItem(+id);
+      this.store.dispatch(loadItem({ id: +id }));
     }
+
+    this.subscriptions.push(
+      this.store.select(selectSelectedItem).subscribe(item => {
+        this.item = item;
+      }),
+      this.store.select(selectLoadingDetail).subscribe(loading => {
+        this.loading = loading;
+      })
+    );
   }
 
-  loadItem(id: number) {
-    this.loading = true;
-    this.itemsService.getItemById(id).subscribe({
-      next: (data) => {
-        this.item = data;
-        this.loading = false;
-      },
-      error: (error) => {
-        console.error('Error loading item:', error);
-        this.loading = false;
-      }
-    });
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   nextImage() {

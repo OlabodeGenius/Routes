@@ -23,7 +23,7 @@ export interface Item {
 export class ItemsService {
   private baseUrl = 'https://dummyjson.com/products';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getItems(query?: string, page: number = 0): Observable<Item[]> {
     let url = `${this.baseUrl}`;
@@ -38,7 +38,7 @@ export class ItemsService {
     );
   }
 
-  getItemById(id: number): Observable<Item> {
+  getItemById(id: string | number): Observable<Item> {
     return this.http.get<Item>(`${this.baseUrl}/${id}`).pipe(
       catchError(this.handleError)
     );

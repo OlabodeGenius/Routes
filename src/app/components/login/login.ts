@@ -50,6 +50,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
+      if (this.loading()) return;
       this.loading.set(true);
       this.errorMessage.set(null);
       const { email, password } = this.loginForm.value;

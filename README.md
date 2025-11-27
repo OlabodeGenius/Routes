@@ -1,59 +1,98 @@
-# AngularRoutes
+# BodShop - Angular Firebase Authentication Demo
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.10.
+A modern, responsive Angular application demonstrating robust authentication flows using **Firebase Authentication** and **Angular Material**.
 
-## Development server
+![Angular](https://img.shields.io/badge/Angular-20.3.0-DD0031?style=for-the-badge&logo=angular)
+![Firebase](https://img.shields.io/badge/Firebase-12.6.0-FFCA28?style=for-the-badge&logo=firebase)
+![Angular Material](https://img.shields.io/badge/Material-20.2.12-3F51B5?style=for-the-badge&logo=angular)
 
-To start a local development server, run:
+## 🚀 Features
 
-```bash
-ng serve
+*   **🔐 Secure Authentication**: Full Email/Password login and signup flows powered by Firebase Auth.
+*   **🛡️ Route Guards**: Protected `/profile` route that redirects unauthenticated users.
+*   **👤 User Profile**: Dedicated profile page displaying user information (Email, UID).
+*   **🧭 Dynamic Navigation**: Navbar that adapts to authentication state (Login/Signup vs Profile/Logout).
+*   **🎨 Modern UI**: Built with Angular Material for a sleek, accessible, and responsive design.
+*   **⚡ Reactive Forms**: Robust form handling with validation (required fields, email format, password matching).
+*   **🔄 State Management**: Real-time authentication state tracking using `RxJS` observables.
+
+## 🛠️ Tech Stack
+
+*   **Framework**: [Angular v20](https://angular.io/) (Standalone Components)
+*   **Backend/Auth**: [Firebase Authentication](https://firebase.google.com/docs/auth)
+*   **UI Library**: [Angular Material](https://material.angular.io/)
+*   **Styling**: SCSS
+*   **Routing**: Angular Router
+
+## ⚙️ Prerequisites
+
+Before you begin, ensure you have the following installed:
+*   **Node.js** (LTS version recommended)
+*   **npm** (Node Package Manager)
+*   **Angular CLI**: `npm install -g @angular/cli`
+
+## 🏃‍♂️ Getting Started
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/OlabodeGenius/Route.git
+    cd angular-routes
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Firebase Setup**
+    *   Create a project in the [Firebase Console](https://console.firebase.google.com/).
+    *   Enable **Authentication** and turn on the **Email/Password** sign-in provider.
+    *   Get your web app configuration object from Project Settings.
+    *   Update `src/environments/environment.ts` with your config:
+        ```typescript
+        export const environment = {
+          firebase: {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+          }
+        };
+        ```
+
+4.  **Run the Application**
+    ```bash
+    npm start
+    ```
+    Navigate to `http://localhost:4200/`.
+
+## 📂 Project Structure
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── login/       # Login page with reactive forms
+│   │   ├── signup/      # Signup page with password validation
+│   │   ├── profile/     # Protected user profile page
+│   │   └── ...
+│   ├── guards/
+│   │   └── auth.guard.ts # Route guard for protection
+│   ├── services/
+│   │   └── auth.service.ts # Firebase auth logic
+│   ├── shared/
+│   │   └── navbar/      # Dynamic navigation bar
+│   ├── app.routes.ts    # Application routing config
+│   └── app.config.ts    # App configuration & providers
+└── environments/        # Firebase configuration
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🤝 Contributing
 
-## Code scaffolding
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/OlabodeGenius/Route/issues).
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 📝 License
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project is [MIT](LICENSE) licensed.
